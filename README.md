@@ -115,6 +115,7 @@ plugins: [
   require("@tailwindcss/forms")({
     strategy: 'base', // only generate global styles
     strategy: 'class', // only generate classes
+    accentColor: '#c3c3c3', // accent to apply on borders etc by default
   }),
 ],
 ```

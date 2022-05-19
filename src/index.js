@@ -5,9 +5,10 @@ const colors = require('tailwindcss/colors')
 const [baseFontSize, { lineHeight: baseLineHeight }] = defaultTheme.fontSize.base
 const { spacing, borderWidth, borderRadius } = defaultTheme
 
-const forms = plugin.withOptions(function (options = { strategy: undefined }) {
+const forms = plugin.withOptions(function (options = { strategy: undefined, accentColor: undefined }) {
   return function ({ addBase, addComponents, theme }) {
     const strategy = options.strategy === undefined ? ['base', 'class'] : [options.strategy]
+    const accentColor = options.accentColor
 
     const rules = [
       {
@@ -48,11 +49,11 @@ const forms = plugin.withOptions(function (options = { strategy: undefined }) {
             '--tw-ring-inset': 'var(--tw-empty,/*!*/ /*!*/)',
             '--tw-ring-offset-width': '0px',
             '--tw-ring-offset-color': '#fff',
-            '--tw-ring-color': theme('colors.blue.600', colors.blue[600]),
+            '--tw-ring-color': accentColor || theme('colors.blue.600', colors.blue[600]),
             '--tw-ring-offset-shadow': `var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)`,
             '--tw-ring-shadow': `var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)`,
             'box-shadow': `var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)`,
-            'border-color': theme('colors.blue.600', colors.blue[600]),
+            'border-color': accentColor || theme('colors.blue.600', colors.blue[600]),
           },
         },
       },
@@ -155,7 +156,7 @@ const forms = plugin.withOptions(function (options = { strategy: undefined }) {
           'flex-shrink': '0',
           height: spacing[4],
           width: spacing[4],
-          color: theme('colors.blue.600', colors.blue[600]),
+          color: accentColor || theme('colors.blue.600', colors.blue[600]),
           'background-color': '#fff',
           'border-color': theme('colors.gray.500', colors.gray[500]),
           'border-width': borderWidth['DEFAULT'],
@@ -185,7 +186,7 @@ const forms = plugin.withOptions(function (options = { strategy: undefined }) {
           '--tw-ring-inset': 'var(--tw-empty,/*!*/ /*!*/)',
           '--tw-ring-offset-width': '2px',
           '--tw-ring-offset-color': '#fff',
-          '--tw-ring-color': theme('colors.blue.600', colors.blue[600]),
+          '--tw-ring-color': accentColor || theme('colors.blue.600', colors.blue[600]),
           '--tw-ring-offset-shadow': `var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color)`,
           '--tw-ring-shadow': `var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color)`,
           'box-shadow': `var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)`,
